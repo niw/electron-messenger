@@ -104,7 +104,7 @@ app.on('ready', function() {
           })(),
           click: function(item, focusedWindow) {
             if (focusedWindow)
-              focusedWindow.toggleDevTools();
+              focusedWindow.webContents.toggleDevTools();
           }
         },
       ]
@@ -185,9 +185,6 @@ app.on('ready', function() {
 
   // and load content of the app.
   mainWindow.loadURL('https://www.messenger.com');
-
-  // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
