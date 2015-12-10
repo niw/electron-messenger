@@ -3,6 +3,7 @@ const electron = require('electron');
 const app = electron.app;  // Module to control application life.
 const BrowserWindow = electron.BrowserWindow;  // Module to create native browser window.
 const Menu = electron.Menu;
+const shell = electron.shell;
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -195,5 +196,12 @@ app.on('ready', function() {
 
     // Quit app when main window is closed.
     app.quit();
+  });
+
+  // Open link in default web browser.
+  mainWindow.webContents.on('new-window', function(e, url) {
+    shell.openExternal(url);
+    // Prevent default behavior which creates new BrowserWindow for the url.
+    e.preventDefault();
   });
 });
